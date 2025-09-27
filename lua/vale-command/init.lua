@@ -1,6 +1,7 @@
 local M = {}
 
 function M.run()
+  print("Vale command executed!")
   local file = vim.api.nvim_buf_get_name(0)
   local output = vim.fn.system("vale --output=JSON " .. file)
   local results, err = vim.fn.json_decode(output)
@@ -30,5 +31,7 @@ function M.run()
     print("No issues found by Vale.")
   end
 end
+
+print("Vale plugin loaded!")
 
 return M
