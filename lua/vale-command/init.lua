@@ -1,4 +1,6 @@
-vim.api.nvim_create_user_command("Vale", function()
+local M = {}
+
+function M.run()
   local file = vim.api.nvim_buf_get_name(0)
   local output = vim.fn.system("vale --output=JSON " .. file)
   local results, err = vim.fn.json_decode(output)
@@ -27,4 +29,6 @@ vim.api.nvim_create_user_command("Vale", function()
   else
     print("No issues found by Vale.")
   end
-end, {})
+end
+
+return M
